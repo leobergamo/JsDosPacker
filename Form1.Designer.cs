@@ -253,11 +253,13 @@
             // 
             // lbLog
             // 
+            lbLog.BackColor = SystemColors.Control;
+            lbLog.BorderStyle = BorderStyle.None;
             lbLog.FormattingEnabled = true;
             lbLog.ItemHeight = 15;
             lbLog.Location = new Point(6, 22);
             lbLog.Name = "lbLog";
-            lbLog.Size = new Size(972, 139);
+            lbLog.Size = new Size(972, 135);
             lbLog.TabIndex = 0;
             // 
             // Form1

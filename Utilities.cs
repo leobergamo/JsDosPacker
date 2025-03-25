@@ -8,6 +8,12 @@ namespace JsDosPacker
 {
     public static class Utilities
     {
+        public static string strGetMysqlDateTime()
+        {
+            DateTime _objDateTime = DateTime.Now;
+            return _objDateTime.ToString("yyyy-MM-dd HH:mm");
+        }
+
         public static string strTrimStartMultiLineString(string _strOriginalString)
         {
             StringBuilder _sbModifiedString = new StringBuilder();

@@ -21,7 +21,7 @@ namespace JsDosPacker
             tbJsDosArchiveOutputPath.Text = dlgSelectFolder.SelectedPath;
             tbJsDosArchiveName.Text = Path.GetFileName(dlgSelectFolder.SelectedPath);
             Variables.strDosGameFilePath = dlgSelectFolder.SelectedPath;
-
+            lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Game file directory '" + Variables.strDosGameFilePath + "' selected...");
         }
 
         private void btnChooseJsDosOutputDirectory_Click(object _objSender, EventArgs _eaEventArgs)
@@ -30,6 +30,7 @@ namespace JsDosPacker
             dlgSelectFolder.ShowDialog();
             tbJsDosArchiveOutputPath.Text = dlgSelectFolder.SelectedPath;
             Variables.strJsDosArchiveOutputPath = dlgSelectFolder.SelectedPath;
+            lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": JsDos output directory '" + Variables.strJsDosArchiveOutputPath + "' selected...");
         }
 
         private void btnCustomizeDosBoxConf_Click(object _objSender, EventArgs _eaEventArgs)
@@ -112,39 +113,39 @@ namespace JsDosPacker
                 string _strTempBundleJsDosPath = Directory.CreateDirectory(Path.Combine(_strTempBundlePath, ".jsdos")).FullName;
                 string _strJsDosOutputArchiveFilespec = Path.Combine(Variables.strJsDosArchiveOutputPath, "jsdos_bundle_" + Variables.strJsDosArchiveName + ".jsdos");
 
-                lbLog.Items.Add("Creating bundle, please wait...");
-                lbLog.Items.Add("Using temporary directory: '" + _strTempBundlePath + "'...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Creating JsDos bundle, please wait...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Using temporary directory: '" + _strTempBundlePath + "'...");
                 if (File.Exists(_strJsDosOutputArchiveFilespec))
                 {
-                    lbLog.Items.Add("Found old bundle: '" + _strJsDosOutputArchiveFilespec + "'...");
-                    lbLog.Items.Add("Deleting old bundle...");
+                    lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Found old bundle: '" + _strJsDosOutputArchiveFilespec + "'...");
+                    lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Deleting old bundle...");
                     File.Delete(_strJsDosOutputArchiveFilespec);
                 }
-                lbLog.Items.Add("Copying file(s) to temporary directory...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Copying game file(s) to temporary directory...");
                 foreach (string __strFilePath in lbDosGameFiles.Items)
                 {
-                    lbLog.Items.Add("Copying file: '" + __strFilePath + "'...");
+                    lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Copying file: '" + __strFilePath + "'...");
                     File.Copy(__strFilePath, Path.Combine(_strTempBundlePath, Path.GetFileName(__strFilePath)), true);
                 }
 
-                lbLog.Items.Add("Creating and storing dosbox configuration in temproary directory...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Creating then storing dosbox configuration in temproary directory...");
                 File.WriteAllText(Path.Combine(_strTempBundleJsDosPath, "dosbox.conf"), Utilities.strTrimStartMultiLineString(Variables.strDosBoxConf));
-                lbLog.Items.Add("Creating and storing jsdos json in temproary directory...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Creating then storing jsdos json in temproary directory...");
                 File.WriteAllText(Path.Combine(_strTempBundleJsDosPath, "jsdos.json"), Utilities.strTrimStartMultiLineString(Variables.strJsDosJson));
-                lbLog.Items.Add("Creating and storing start batch file in temproary directory...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Creating then storing start batch file in temproary directory...");
                 File.WriteAllText(Path.Combine(_strTempBundlePath, "start.bat"), Utilities.strTrimStartMultiLineString(string.Format(Variables.strDosGameStartBatchFile, Path.GetFileName(Variables.strDosGameExecutablePath))));
-                lbLog.Items.Add("Creating and storing bundle: '" + Path.GetFileName(_strJsDosOutputArchiveFilespec) + "' of temporary files in directory: '" + Path.GetDirectoryName(_strJsDosOutputArchiveFilespec) + "'...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Creating then storing '" + Path.GetFileName(_strJsDosOutputArchiveFilespec) + "' bundle in directory: '" + Path.GetDirectoryName(_strJsDosOutputArchiveFilespec) + "'...");
                 ZipFile.CreateFromDirectory(_strTempBundlePath, _strJsDosOutputArchiveFilespec);
-                lbLog.Items.Add("Removing temporary directory...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Removing temporary directory...");
                 Utilities.vDeleteDirectory(_strTempBundlePath);
-                lbLog.Items.Add("Bundle created!");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Bundle created!");
                 lbLog.SelectedIndex = lbLog.Items.Count - 1;
                 lbLog.SelectedIndex = -1;
-                Process.Start("explorer.exe", "/select, " + Path.GetDirectoryName(_strJsDosOutputArchiveFilespec));
+                Process.Start("explorer.exe", @Path.GetDirectoryName(_strJsDosOutputArchiveFilespec));
             }
             catch (Exception _objExc)
             {
-                lbLog.Items.Add("Bundle creation failed: '" + _objExc.Message + "'...");
+                lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Bundle creation failed: '" + _objExc.Message + "'...");
                 Utilities.vConLog(_objExc.ToString());
                 lbLog.SelectedIndex = lbLog.Items.Count - 1;
                 lbLog.SelectedIndex = -1;
@@ -159,6 +160,8 @@ namespace JsDosPacker
             dlgSelectFile.ShowDialog();
             tbDosGameExecutable.Text = dlgSelectFile.FileName;
             Variables.strDosGameExecutablePath = dlgSelectFile.FileName;
+            lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Game executable file '" + Variables.strDosGameExecutablePath + "' selected...");
+
         }
 
         private void tbJsDosArchiveName_TextChanged(object _objSender, EventArgs _eaEventArgs)
@@ -183,8 +186,11 @@ namespace JsDosPacker
 
             for (int ___intIndex = 0; ___intIndex < __strArrFiles.Length; ___intIndex++)
             {
-                if(!Variables.strArrIgnoredExtensions.Contains(Path.GetExtension(__strArrFiles[___intIndex])))
-                    lbDosGameFiles.Items.Add(__strArrFiles[___intIndex].ToString());
+                if (!Variables.strArrIgnoredExtensions.Contains(Path.GetExtension(__strArrFiles[___intIndex])))
+                {
+                    lbLog.Items.Add(Utilities.strGetMysqlDateTime() + ": Found game file '" + __strArrFiles[___intIndex] + "' selected...");
+                    lbDosGameFiles.Items.Add(__strArrFiles[___intIndex]);
+                }
             }
 
         }
