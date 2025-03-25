@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IO.Compression;
 using System.Windows.Forms;
 
@@ -19,7 +20,7 @@ namespace JsDosPacker
             tbDosGameFileDirectory.Text = dlgSelectFolder.SelectedPath;
             tbJsDosArchiveOutputPath.Text = dlgSelectFolder.SelectedPath;
             tbJsDosArchiveName.Text = Path.GetFileName(dlgSelectFolder.SelectedPath);
-            Strings.strDosGameFilePath = dlgSelectFolder.SelectedPath;
+            Variables.strDosGameFilePath = dlgSelectFolder.SelectedPath;
 
         }
 
@@ -28,33 +29,33 @@ namespace JsDosPacker
             dlgSelectFolder.InitialDirectory = "c:\\";
             dlgSelectFolder.ShowDialog();
             tbJsDosArchiveOutputPath.Text = dlgSelectFolder.SelectedPath;
-            Strings.strJsDosArchiveOutputPath = dlgSelectFolder.SelectedPath;
+            Variables.strJsDosArchiveOutputPath = dlgSelectFolder.SelectedPath;
         }
 
         private void btnCustomizeDosBoxConf_Click(object _objSender, EventArgs _eaEventArgs)
         {
-            if (Strings.strDosBoxConf == string.Empty)
+            if (Variables.strDosBoxConf == string.Empty)
             {
-                Form _frmEditor = new Form2(Strings.strDefDosBoxConf, "dosbox_conf");
+                Form _frmEditor = new Form2(Variables.strDefDosBoxConf, "dosbox_conf");
                 _frmEditor.ShowDialog();
             }
             else
             {
-                Form _frmEditor = new Form2(Strings.strDosBoxConf, "dosbox_conf");
+                Form _frmEditor = new Form2(Variables.strDosBoxConf, "dosbox_conf");
                 _frmEditor.ShowDialog();
             }
         }
 
         private void btnCustomizeJsDosJson_Click(object _objSender, EventArgs _eaEventArgs)
         {
-            if (Strings.strJsDosJson == string.Empty)
+            if (Variables.strJsDosJson == string.Empty)
             {
-                Form _frmEditor = new Form2(Strings.strDefJsDosJson, "jsdos_json");
+                Form _frmEditor = new Form2(Variables.strDefJsDosJson, "jsdos_json");
                 _frmEditor.ShowDialog();
             }
             else
             {
-                Form _frmEditor = new Form2(Strings.strJsDosJson, "jsdos_json");
+                Form _frmEditor = new Form2(Variables.strJsDosJson, "jsdos_json");
                 _frmEditor.ShowDialog();
             }
         }
@@ -63,43 +64,43 @@ namespace JsDosPacker
         {
 
 
-            if (Strings.strDosBoxConf == string.Empty)
+            if (Variables.strDosBoxConf == string.Empty)
             {
                 MessageBox.Show("DosBox configuration not defined!");
                 return;
             }
 
-            if (Strings.strDosGameExecutablePath == string.Empty)
+            if (Variables.strDosGameExecutablePath == string.Empty)
             {
                 MessageBox.Show("DOS game executable path not defined!");
                 return;
             }
 
-            if (Strings.strDosGameFilePath == string.Empty)
+            if (Variables.strDosGameFilePath == string.Empty)
             {
                 MessageBox.Show("DOS game file directory not defined!");
                 return;
             }
 
-            if (Strings.strDosGameStartBatchFile == string.Empty)
+            if (Variables.strDosGameStartBatchFile == string.Empty)
             {
                 MessageBox.Show("DOS game start batch file not defined!");
                 return;
             }
 
-            if (Strings.strJsDosArchiveName == string.Empty)
+            if (Variables.strJsDosArchiveName == string.Empty)
             {
                 MessageBox.Show("JsDos archive name not defined!");
                 return;
             }
 
-            if (Strings.strJsDosArchiveOutputPath == string.Empty)
+            if (Variables.strJsDosArchiveOutputPath == string.Empty)
             {
                 MessageBox.Show("JsDos archive output path not defined!");
                 return;
             }
 
-            if (Strings.strJsDosJson == string.Empty)
+            if (Variables.strJsDosJson == string.Empty)
             {
                 MessageBox.Show("JsDos json not defined!");
                 return;
@@ -109,16 +110,16 @@ namespace JsDosPacker
             {
                 string _strTempBundlePath = Directory.CreateTempSubdirectory().FullName;
                 string _strTempBundleJsDosPath = Directory.CreateDirectory(Path.Combine(_strTempBundlePath, ".jsdos")).FullName;
-                string _strJsDosOutputArchiveFilespec = Path.Combine(Strings.strJsDosArchiveOutputPath, "jsdos_bundle_" + Strings.strJsDosArchiveName + ".jsdos");
+                string _strJsDosOutputArchiveFilespec = Path.Combine(Variables.strJsDosArchiveOutputPath, "jsdos_bundle_" + Variables.strJsDosArchiveName + ".jsdos");
 
                 lbLog.Items.Add("Creating bundle, please wait...");
                 lbLog.Items.Add("Using temporary directory: '" + _strTempBundlePath + "'...");
-                /*if (File.Exists(_strJsDosOutputArchiveFilespec))
+                if (File.Exists(_strJsDosOutputArchiveFilespec))
                 {
                     lbLog.Items.Add("Found old bundle: '" + _strJsDosOutputArchiveFilespec + "'...");
                     lbLog.Items.Add("Deleting old bundle...");
                     File.Delete(_strJsDosOutputArchiveFilespec);
-                }*/
+                }
                 lbLog.Items.Add("Copying file(s) to temporary directory...");
                 foreach (string __strFilePath in lbDosGameFiles.Items)
                 {
@@ -127,21 +128,24 @@ namespace JsDosPacker
                 }
 
                 lbLog.Items.Add("Creating and storing dosbox configuration in temproary directory...");
-                File.WriteAllText(Path.Combine(_strTempBundleJsDosPath, "dosbox.conf"), Utilities.trimStartMultiLineString(Strings.strDosBoxConf));
+                File.WriteAllText(Path.Combine(_strTempBundleJsDosPath, "dosbox.conf"), Utilities.strTrimStartMultiLineString(Variables.strDosBoxConf));
                 lbLog.Items.Add("Creating and storing jsdos json in temproary directory...");
-                File.WriteAllText(Path.Combine(_strTempBundleJsDosPath, "jsdos.json"), Utilities.trimStartMultiLineString(Strings.strJsDosJson));
+                File.WriteAllText(Path.Combine(_strTempBundleJsDosPath, "jsdos.json"), Utilities.strTrimStartMultiLineString(Variables.strJsDosJson));
                 lbLog.Items.Add("Creating and storing start batch file in temproary directory...");
-                File.WriteAllText(Path.Combine(_strTempBundlePath, "start.bat"), Utilities.trimStartMultiLineString(string.Format(Strings.strDosGameStartBatchFile, Path.GetFileName(Strings.strDosGameExecutablePath))));
+                File.WriteAllText(Path.Combine(_strTempBundlePath, "start.bat"), Utilities.strTrimStartMultiLineString(string.Format(Variables.strDosGameStartBatchFile, Path.GetFileName(Variables.strDosGameExecutablePath))));
                 lbLog.Items.Add("Creating and storing bundle: '" + Path.GetFileName(_strJsDosOutputArchiveFilespec) + "' of temporary files in directory: '" + Path.GetDirectoryName(_strJsDosOutputArchiveFilespec) + "'...");
                 ZipFile.CreateFromDirectory(_strTempBundlePath, _strJsDosOutputArchiveFilespec);
                 lbLog.Items.Add("Removing temporary directory...");
-                Utilities.deleteDirectory(_strTempBundlePath);
+                Utilities.vDeleteDirectory(_strTempBundlePath);
                 lbLog.Items.Add("Bundle created!");
                 lbLog.SelectedIndex = lbLog.Items.Count - 1;
                 lbLog.SelectedIndex = -1;
-            } catch (Exception _objExc)
+                Process.Start("explorer.exe", "/select, " + Path.GetDirectoryName(_strJsDosOutputArchiveFilespec));
+            }
+            catch (Exception _objExc)
             {
                 lbLog.Items.Add("Bundle creation failed: '" + _objExc.Message + "'...");
+                Utilities.vConLog(_objExc.ToString());
                 lbLog.SelectedIndex = lbLog.Items.Count - 1;
                 lbLog.SelectedIndex = -1;
             }
@@ -154,17 +158,17 @@ namespace JsDosPacker
             dlgSelectFile.InitialDirectory = tbDosGameFileDirectory.Text;
             dlgSelectFile.ShowDialog();
             tbDosGameExecutable.Text = dlgSelectFile.FileName;
-            Strings.strDosGameExecutablePath = dlgSelectFile.FileName;
+            Variables.strDosGameExecutablePath = dlgSelectFile.FileName;
         }
 
         private void tbJsDosArchiveName_TextChanged(object _objSender, EventArgs _eaEventArgs)
         {
-            Strings.strJsDosArchiveName = tbJsDosArchiveName.Text;
+            Variables.strJsDosArchiveName = tbJsDosArchiveName.Text;
         }
 
         private void tbJsDosArchiveOutputPath_TextChanged(object sender, EventArgs e)
         {
-            Strings.strJsDosArchiveOutputPath = tbJsDosArchiveOutputPath.Text;
+            Variables.strJsDosArchiveOutputPath = tbJsDosArchiveOutputPath.Text;
             groupBox4.Enabled = true;
         }
 
@@ -174,26 +178,27 @@ namespace JsDosPacker
             groupBox3.Enabled = true;
             groupBox5.Enabled = true;
 
-            string[] __str_arr_files = Directory.GetFiles(tbDosGameFileDirectory.Text);
+            string[] __strArrFiles = Directory.GetFiles(tbDosGameFileDirectory.Text);
             lbDosGameFiles.Items.Clear();
 
-            for (int ___intIndex = 0; ___intIndex < __str_arr_files.Length; ___intIndex++)
+            for (int ___intIndex = 0; ___intIndex < __strArrFiles.Length; ___intIndex++)
             {
-                lbDosGameFiles.Items.Add(__str_arr_files[___intIndex].ToString());
+                if(!Variables.strArrIgnoredExtensions.Contains(Path.GetExtension(__strArrFiles[___intIndex])))
+                    lbDosGameFiles.Items.Add(__strArrFiles[___intIndex].ToString());
             }
 
         }
 
         private void btnCustomizeStartBatchFile_Click(object sender, EventArgs e)
         {
-            if (Strings.strDosGameStartBatchFile == string.Empty)
+            if (Variables.strDosGameStartBatchFile == string.Empty)
             {
-                Form _frmEditor = new Form2(Strings.strDefDosGameStartBatchFile, "start_batch");
+                Form _frmEditor = new Form2(Variables.strDefDosGameStartBatchFile, "start_batch");
                 _frmEditor.ShowDialog();
             }
             else
             {
-                Form _frmEditor = new Form2(Strings.strDosGameStartBatchFile, "start_batch");
+                Form _frmEditor = new Form2(Variables.strDosGameStartBatchFile, "start_batch");
                 _frmEditor.ShowDialog();
             }
         }

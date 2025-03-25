@@ -67,7 +67,7 @@
             groupBox1.Size = new Size(984, 65);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "DOS Game File Directory";
+            groupBox1.Text = "Set Game File Path ( Step 1 of 4 )";
             // 
             // btnChooseDosGameFileDirectory
             // 
@@ -95,15 +95,17 @@
             groupBox2.Size = new Size(984, 217);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "DOS Game Files";
+            groupBox2.Text = "Game File(s) Preview";
             // 
             // lbDosGameFiles
             // 
+            lbDosGameFiles.BackColor = SystemColors.Control;
+            lbDosGameFiles.BorderStyle = BorderStyle.None;
             lbDosGameFiles.FormattingEnabled = true;
             lbDosGameFiles.ItemHeight = 15;
             lbDosGameFiles.Location = new Point(6, 22);
             lbDosGameFiles.Name = "lbDosGameFiles";
-            lbDosGameFiles.Size = new Size(972, 184);
+            lbDosGameFiles.Size = new Size(972, 180);
             lbDosGameFiles.TabIndex = 0;
             // 
             // groupBox3
@@ -116,7 +118,7 @@
             groupBox3.Size = new Size(984, 65);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
-            groupBox3.Text = "JsDos Archive Output Path";
+            groupBox3.Text = "Set JsDos Bundle Output Path ( Step 3 of 4 )";
             // 
             // btnChooseJsDosOutputDirectory
             // 
@@ -145,7 +147,7 @@
             groupBox4.Size = new Size(984, 65);
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
-            groupBox4.Text = "JsDos Archive Name";
+            groupBox4.Text = "Set JsDos Bundle Name ( Step 4 of 4 )";
             // 
             // tbJsDosArchiveName
             // 
@@ -195,7 +197,7 @@
             groupBox5.Size = new Size(984, 65);
             groupBox5.TabIndex = 7;
             groupBox5.TabStop = false;
-            groupBox5.Text = "DOS Game Executable";
+            groupBox5.Text = "Set Game Executable Path ( Step 2 of 4 )";
             // 
             // btnChooseDosGameExecutable
             // 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JsDosPacker
 {
-    public static class Strings
+    public static class Variables
     {
 
         public static string strDefJsDosJson = @"
@@ -220,6 +220,7 @@ namespace JsDosPacker
         public static string strJsDosArchiveOutputPath = string.Empty;  
         public static string strJsDosArchiveName = string.Empty;
         public static string strDosGameStartBatchFile = strDefDosGameStartBatchFile;
+        public static string[] strArrIgnoredExtensions = { ".jsdos", ".zip" };
 
 
     }

@@ -8,7 +8,7 @@ namespace JsDosPacker
 {
     public static class Utilities
     {
-        public static string trimStartMultiLineString(string _strOriginalString)
+        public static string strTrimStartMultiLineString(string _strOriginalString)
         {
             StringBuilder _sbModifiedString = new StringBuilder();
 
@@ -24,7 +24,7 @@ namespace JsDosPacker
             return _sbModifiedString.ToString();
         }
 
-        public static void deleteDirectory(string _strTargetPath)
+        public static void vDeleteDirectory(string _strTargetPath)
         {
             string[] _str_arrFiles = Directory.GetFiles(_strTargetPath);
             string[] _str_arr_Dirs = Directory.GetDirectories(_strTargetPath);
@@ -37,13 +37,13 @@ namespace JsDosPacker
 
             foreach (string __strDir in _str_arr_Dirs)
             {
-                deleteDirectory(__strDir);
+                vDeleteDirectory(__strDir);
             }
 
             Directory.Delete(_strTargetPath, false);
         }
 
-        public static void conLog(string _strMessage)
+        public static void vConLog(string _strMessage)
         {
             System.Diagnostics.Debug.WriteLine(_strMessage);
         }

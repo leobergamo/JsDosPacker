@@ -23,22 +23,22 @@ namespace JsDosPacker
 
             this.strContext = _strContext;
 
-            tbEditor.AppendText(Utilities.trimStartMultiLineString(_strOriginalString));
+            tbEditor.AppendText(Utilities.strTrimStartMultiLineString(_strOriginalString));
         }
 
         private void btnOk_Click(object _objSender, EventArgs _eaEventArgs)
         {
             if (this.strContext == "dosbox_conf")
             {
-                Strings.strDosBoxConf = tbEditor.Text;
+                Variables.strDosBoxConf = tbEditor.Text;
             }
             else if (this.strContext == "jsdos_json")
             {
-                Strings.strJsDosJson = tbEditor.Text;
+                Variables.strJsDosJson = tbEditor.Text;
             }
             else if (this.strContext == "start_batch")
             {
-                Strings.strDosGameStartBatchFile = tbEditor.Text;
+                Variables.strDosGameStartBatchFile = tbEditor.Text;
             }
 
             this.Close();
@@ -53,15 +53,15 @@ namespace JsDosPacker
         {
             if (this.strContext == "dosbox_conf")
             {
-                tbEditor.Text = Utilities.trimStartMultiLineString(Strings.strDefDosBoxConf);
+                tbEditor.Text = Utilities.strTrimStartMultiLineString(Variables.strDefDosBoxConf);
             }
             else if (this.strContext == "jsdos_json")
             {
-                tbEditor.Text = Utilities.trimStartMultiLineString(Strings.strDefJsDosJson);
+                tbEditor.Text = Utilities.strTrimStartMultiLineString(Variables.strDefJsDosJson);
             }
             else if (this.strContext == "start_batch")
             {
-                tbEditor.Text = Utilities.trimStartMultiLineString(Strings.strDefDosGameStartBatchFile);
+                tbEditor.Text = Utilities.strTrimStartMultiLineString(Variables.strDefDosGameStartBatchFile);
             }
 
         }
