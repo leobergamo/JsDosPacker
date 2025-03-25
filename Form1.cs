@@ -268,5 +268,11 @@ namespace JsDosPacker
             Process.Start(new ProcessStartInfo { FileName = "https://dos.zone/download/", UseShellExecute = true });
 
         }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = "https://github.com/leobergamo/JsDosPacker.git", UseShellExecute = true });
+
+        }
     }
 }

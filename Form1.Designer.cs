@@ -61,6 +61,7 @@
             linkLabel6 = new LinkLabel();
             linkLabel7 = new LinkLabel();
             textBox1 = new TextBox();
+            linkLabel8 = new LinkLabel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -383,12 +384,24 @@
             textBox1.Text = resources.GetString("textBox1.Text");
             textBox1.TextAlign = HorizontalAlignment.Center;
             // 
+            // linkLabel8
+            // 
+            linkLabel8.AutoSize = true;
+            linkLabel8.Location = new Point(736, 18);
+            linkLabel8.Name = "linkLabel8";
+            linkLabel8.Size = new Size(104, 15);
+            linkLabel8.TabIndex = 21;
+            linkLabel8.TabStop = true;
+            linkLabel8.Text = "GitHub Repository";
+            linkLabel8.LinkClicked += linkLabel8_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 729);
             ControlBox = false;
+            Controls.Add(linkLabel8);
             Controls.Add(textBox1);
             Controls.Add(linkLabel7);
             Controls.Add(linkLabel6);
@@ -464,5 +477,6 @@
         private LinkLabel linkLabel6;
         private LinkLabel linkLabel7;
         private TextBox textBox1;
+        private LinkLabel linkLabel8;
     }
 }
