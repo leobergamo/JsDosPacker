@@ -7,7 +7,36 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>jsdos.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
+    <Title>JsDos Bundle Packer</Title>
+    <Authors>Leo C. Bergamo</Authors>
+    <Description>A simple applcation to streamline JsDos bundle creation...
+</Description>
+    <Copyright>Leo C. Bergamo</Copyright>
+    <PackageProjectUrl>https://github.com/leobergamo/JsDosPacker.git</PackageProjectUrl>
+    <PackageIcon>logo-128.png</PackageIcon>
+    <RepositoryUrl>https://github.com/leobergamo/JsDosPacker.git</RepositoryUrl>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="jsdos.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Downloads\logo-128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

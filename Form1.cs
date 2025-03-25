@@ -251,5 +251,22 @@ namespace JsDosPacker
             Process.Start(new ProcessStartInfo { FileName = "https://x.com/intent/user?screen_name=doszone_db", UseShellExecute = true });
 
         }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = "https://js-dos.com/support-us.html", UseShellExecute = true });
+
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = "https://dos.zone/studio/", UseShellExecute = true });
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = "https://dos.zone/download/", UseShellExecute = true });
+
+        }
     }
 }

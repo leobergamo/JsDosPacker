@@ -57,6 +57,10 @@
             label1 = new Label();
             linkLabel4 = new LinkLabel();
             pictureBox1 = new PictureBox();
+            linkLabel5 = new LinkLabel();
+            linkLabel6 = new LinkLabel();
+            linkLabel7 = new LinkLabel();
+            textBox1 = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -70,7 +74,7 @@
             // 
             groupBox1.Controls.Add(btnChooseDosGameFileDirectory);
             groupBox1.Controls.Add(tbDosGameFileDirectory);
-            groupBox1.Location = new Point(12, 53);
+            groupBox1.Location = new Point(12, 111);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(984, 65);
             groupBox1.TabIndex = 0;
@@ -98,9 +102,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(lbDosGameFiles);
-            groupBox2.Location = new Point(12, 124);
+            groupBox2.Location = new Point(12, 182);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(984, 176);
+            groupBox2.Size = new Size(984, 118);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Game File(s) Preview";
@@ -113,7 +117,7 @@
             lbDosGameFiles.ItemHeight = 15;
             lbDosGameFiles.Location = new Point(6, 22);
             lbDosGameFiles.Name = "lbDosGameFiles";
-            lbDosGameFiles.Size = new Size(972, 135);
+            lbDosGameFiles.Size = new Size(972, 75);
             lbDosGameFiles.TabIndex = 0;
             // 
             // groupBox3
@@ -295,7 +299,7 @@
             // linkLabel3
             // 
             linkLabel3.AutoSize = true;
-            linkLabel3.Location = new Point(353, 18);
+            linkLabel3.Location = new Point(440, 18);
             linkLabel3.Name = "linkLabel3";
             linkLabel3.Size = new Size(54, 15);
             linkLabel3.TabIndex = 13;
@@ -333,12 +337,62 @@
             pictureBox1.TabIndex = 16;
             pictureBox1.TabStop = false;
             // 
+            // linkLabel5
+            // 
+            linkLabel5.AutoSize = true;
+            linkLabel5.Location = new Point(353, 18);
+            linkLabel5.Name = "linkLabel5";
+            linkLabel5.Size = new Size(81, 15);
+            linkLabel5.TabIndex = 17;
+            linkLabel5.TabStop = true;
+            linkLabel5.Text = "Support JsDos";
+            linkLabel5.LinkClicked += linkLabel5_LinkClicked;
+            // 
+            // linkLabel6
+            // 
+            linkLabel6.AutoSize = true;
+            linkLabel6.Location = new Point(500, 18);
+            linkLabel6.Name = "linkLabel6";
+            linkLabel6.Size = new Size(125, 15);
+            linkLabel6.TabIndex = 18;
+            linkLabel6.TabStop = true;
+            linkLabel6.Text = "DosZone Game Studio";
+            linkLabel6.LinkClicked += linkLabel6_LinkClicked;
+            // 
+            // linkLabel7
+            // 
+            linkLabel7.AutoSize = true;
+            linkLabel7.Location = new Point(631, 18);
+            linkLabel7.Name = "linkLabel7";
+            linkLabel7.Size = new Size(99, 15);
+            linkLabel7.TabIndex = 19;
+            linkLabel7.TabStop = true;
+            linkLabel7.Text = "DosZone Browser";
+            linkLabel7.LinkClicked += linkLabel7_LinkClicked;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = SystemColors.Control;
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Enabled = false;
+            textBox1.Location = new Point(12, 60);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(984, 45);
+            textBox1.TabIndex = 20;
+            textBox1.Text = resources.GetString("textBox1.Text");
+            textBox1.TextAlign = HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 729);
             ControlBox = false;
+            Controls.Add(textBox1);
+            Controls.Add(linkLabel7);
+            Controls.Add(linkLabel6);
+            Controls.Add(linkLabel5);
             Controls.Add(pictureBox1);
             Controls.Add(linkLabel4);
             Controls.Add(label1);
@@ -360,7 +414,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "JsDos Packer (c) Leo C. Bergamo";
+            Text = "JsDos Bundle Packer (c) Leo C. Bergamo";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -406,5 +460,9 @@
         private Label label1;
         private LinkLabel linkLabel4;
         private PictureBox pictureBox1;
+        private LinkLabel linkLabel5;
+        private LinkLabel linkLabel6;
+        private LinkLabel linkLabel7;
+        private TextBox textBox1;
     }
 }

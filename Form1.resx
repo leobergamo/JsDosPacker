@@ -741,6 +741,12 @@
         pkBTj2cAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="textBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>All trademarks, copyrights and or intellectual property are solely owned and maintained by their respective proprietors. The author of this application claims no ownership, stake or domain of the aforementioned. This application was created out of sheer enthusiasm for the JsDos Project. This application is freeware, use at your own risk!</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
