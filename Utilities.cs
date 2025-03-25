@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace JsDosPacker
 {
     public static class Utilities
     {
+        private static bool boolCurrentlyFlashing = false;
+
         public static string strGetMysqlDateTime()
         {
             DateTime _objDateTime = DateTime.Now;
@@ -52,6 +55,47 @@ namespace JsDosPacker
         public static void vConLog(string _strMessage)
         {
             System.Diagnostics.Debug.WriteLine(_strMessage);
+        }
+
+        public static async void vAsyncFlashControl(Control _ctrlControl)
+        {
+            // based on code from uglycoyote @ https://stackoverflow.com/a/57979708
+
+            Color _clrFlashColor = Color.Yellow;
+
+            float _fltDuration = 500;
+            int _intSteps = 10;
+            float _fltInterval = _fltDuration / _intSteps;
+
+            if (boolCurrentlyFlashing) return;
+
+            boolCurrentlyFlashing = true;
+            Color _clrOriginalColor = _ctrlControl.BackColor;
+            float _fltInterpolant = 0.0f;
+
+            while (_fltInterpolant < 1.0f)
+            {
+                Color _clrColor = clrInterpolateColor(_clrFlashColor, _clrOriginalColor, _fltInterpolant);
+                _ctrlControl.BackColor = _clrColor;
+                await Task.Delay((int)_fltInterval);
+                _fltInterpolant += (1.0f / _intSteps);
+            }
+
+            _ctrlControl.BackColor = _clrOriginalColor;
+
+            boolCurrentlyFlashing = false;
+        }
+
+        public static Color clrInterpolateColor(Color _clrColorOne, Color _clrColorTwo, float _fltAlpha)
+        {
+            // based on code from uglycoyote @ https://stackoverflow.com/a/57979708
+
+            float _fltOneMinusAlpha = 1.0f - _fltAlpha;
+            float _ftlA = _fltOneMinusAlpha * (float)_clrColorOne.A + _fltAlpha * (float)_clrColorTwo.A;
+            float _fltR = _fltOneMinusAlpha * (float)_clrColorOne.R + _fltAlpha * (float)_clrColorTwo.R;
+            float _fltG = _fltOneMinusAlpha * (float)_clrColorOne.G + _fltAlpha * (float)_clrColorTwo.G;
+            float _fltB = _fltOneMinusAlpha * (float)_clrColorOne.B + _fltAlpha * (float)_clrColorTwo.B;
+            return Color.FromArgb((int)_ftlA, (int)_fltR, (int)_fltG, (int)_fltB);
         }
     }
 }

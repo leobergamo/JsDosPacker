@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             tbEditor = new TextBox();
             btnCancel = new Button();
             btnOk = new Button();
@@ -83,6 +84,7 @@
             Controls.Add(btnOk);
             Controls.Add(btnCancel);
             Controls.Add(tbEditor);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form2";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JsDos Packer - Editor";

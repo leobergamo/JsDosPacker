@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new GroupBox();
             btnChooseDosGameFileDirectory = new Button();
             tbDosGameFileDirectory = new TextBox();
@@ -50,19 +51,26 @@
             btnExit = new Button();
             groupBox6 = new GroupBox();
             lbLog = new ListBox();
+            linkLabel1 = new LinkLabel();
+            linkLabel2 = new LinkLabel();
+            linkLabel3 = new LinkLabel();
+            label1 = new Label();
+            linkLabel4 = new LinkLabel();
+            pictureBox1 = new PictureBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(btnChooseDosGameFileDirectory);
             groupBox1.Controls.Add(tbDosGameFileDirectory);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(12, 53);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(984, 65);
             groupBox1.TabIndex = 0;
@@ -90,9 +98,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(lbDosGameFiles);
-            groupBox2.Location = new Point(12, 83);
+            groupBox2.Location = new Point(12, 124);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(984, 217);
+            groupBox2.Size = new Size(984, 176);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Game File(s) Preview";
@@ -105,7 +113,7 @@
             lbDosGameFiles.ItemHeight = 15;
             lbDosGameFiles.Location = new Point(6, 22);
             lbDosGameFiles.Name = "lbDosGameFiles";
-            lbDosGameFiles.Size = new Size(972, 180);
+            lbDosGameFiles.Size = new Size(972, 135);
             lbDosGameFiles.TabIndex = 0;
             // 
             // groupBox3
@@ -262,12 +270,81 @@
             lbLog.Size = new Size(972, 135);
             lbLog.TabIndex = 0;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(55, 18);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(88, 15);
+            linkLabel1.TabIndex = 11;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "JsDos Overview";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(149, 18);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(98, 15);
+            linkLabel2.TabIndex = 12;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "JsDos On Discord";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
+            // linkLabel3
+            // 
+            linkLabel3.AutoSize = true;
+            linkLabel3.Location = new Point(353, 18);
+            linkLabel3.Name = "linkLabel3";
+            linkLabel3.Size = new Size(54, 15);
+            linkLabel3.TabIndex = 13;
+            linkLabel3.TabStop = true;
+            linkLabel3.Text = "DosZone";
+            linkLabel3.LinkClicked += linkLabel3_LinkClicked;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(37, 15);
+            label1.TabIndex = 14;
+            label1.Text = "Links:";
+            // 
+            // linkLabel4
+            // 
+            linkLabel4.AutoSize = true;
+            linkLabel4.Location = new Point(253, 18);
+            linkLabel4.Name = "linkLabel4";
+            linkLabel4.Size = new Size(94, 15);
+            linkLabel4.TabIndex = 15;
+            linkLabel4.TabStop = true;
+            linkLabel4.Text = "JsDos On Twitter";
+            linkLabel4.LinkClicked += linkLabel4_LinkClicked;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(943, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(53, 42);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 16;
+            pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 729);
             ControlBox = false;
+            Controls.Add(pictureBox1);
+            Controls.Add(linkLabel4);
+            Controls.Add(label1);
+            Controls.Add(linkLabel3);
+            Controls.Add(linkLabel2);
+            Controls.Add(linkLabel1);
             Controls.Add(groupBox6);
             Controls.Add(btnExit);
             Controls.Add(btnCustomizeStartBatchFile);
@@ -280,6 +357,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JsDos Packer (c) Leo C. Bergamo";
@@ -293,7 +371,9 @@
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -320,5 +400,11 @@
         private Button btnExit;
         private GroupBox groupBox6;
         private ListBox lbLog;
+        private LinkLabel linkLabel1;
+        private LinkLabel linkLabel2;
+        private LinkLabel linkLabel3;
+        private Label label1;
+        private LinkLabel linkLabel4;
+        private PictureBox pictureBox1;
     }
 }
