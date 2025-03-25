@@ -163,6 +163,7 @@ namespace JsDosPacker
             dlgSelectFile.Title = "Choose DOS Game Startup File";
             dlgSelectFile.Filter = "Executable Files (*.exe)|*.exe|Command Files (*.com)|*.com|Batch Files (*.bat)|*.bat";
             dlgSelectFile.InitialDirectory = tbDosGameFileDirectory.Text;
+            dlgSelectFile.FileName = "";
             dlgSelectFile.ShowDialog();
             tbDosGameExecutable.Text = dlgSelectFile.FileName;
             Variables.strDosGameExecutablePath = dlgSelectFile.FileName;
