@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO;
 using System.IO.Compression;
 using System.Security.Policy;
 using System.Windows.Forms;
@@ -132,11 +133,7 @@ namespace JsDosPacker
                     File.Delete(_strJsDosOutputArchiveFilespec);
                 }
                 vAddToLog("Copying game file(s) to temporary directory...");
-                foreach (string __strFilePath in lbDosGameFiles.Items)
-                {
-                    vAddToLog("Copying file: '" + __strFilePath + "'...");
-                    File.Copy(__strFilePath, Path.Combine(_strTempBundlePath, Path.GetFileName(__strFilePath)), true);
-                }
+                Utilities.vCopyRecursively(Variables.strDosGameFilePath, _strTempBundlePath, this.vAddToLog);
 
                 vAddToLog("Creating then storing dosbox configuration in temproary directory...");
                 File.WriteAllText(Path.Combine(_strTempBundleJsDosPath, "dosbox.conf"), Utilities.strTrimStartMultiLineString(Variables.strDosBoxConf));
@@ -190,14 +187,15 @@ namespace JsDosPacker
             groupBox3.Enabled = true;
             groupBox5.Enabled = true;
 
-            string[] __strArrFiles = Directory.GetFiles(tbDosGameFileDirectory.Text);
             lbDosGameFiles.Items.Clear();
+
+            string[] __strArrFiles = Directory.GetFiles(tbDosGameFileDirectory.Text, "*", SearchOption.AllDirectories);
 
             for (int ___intIndex = 0; ___intIndex < __strArrFiles.Length; ___intIndex++)
             {
                 if (!Variables.strArrIgnoredExtensions.Contains(Path.GetExtension(__strArrFiles[___intIndex])))
                 {
-                    vAddToLog("Found game file '" + __strArrFiles[___intIndex] + "' selected...");
+                    vAddToLog("Found game file '" + __strArrFiles[___intIndex] + "' found...");
                     lbDosGameFiles.Items.Add(__strArrFiles[___intIndex]);
                 }
             }

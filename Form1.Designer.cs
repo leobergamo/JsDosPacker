@@ -108,7 +108,7 @@
             groupBox2.Size = new Size(984, 118);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Game File(s) Preview";
+            groupBox2.Text = "Game File Path Contents";
             // 
             // lbDosGameFiles
             // 

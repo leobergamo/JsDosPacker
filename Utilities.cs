@@ -11,6 +11,24 @@ namespace JsDosPacker
     {
         private static bool boolCurrentlyFlashing = false;
 
+        public static void vCopyRecursively(string _strSourcePath, string _strDestPath,  Action<String> _delOuputHandler)
+        {
+
+            // based on: https://stackoverflow.com/a/55596428 by Lakmal
+
+            foreach (string __strDirPath in Directory.GetDirectories(_strSourcePath, "*", SearchOption.AllDirectories))
+            {
+                _delOuputHandler("Creating Directory: " + __strDirPath.Replace(_strSourcePath, _strDestPath));
+                Directory.CreateDirectory(__strDirPath.Replace(_strSourcePath, _strDestPath));
+            }
+            foreach (string __strFilePath in Directory.GetFiles(_strSourcePath, "*", SearchOption.AllDirectories))
+            {
+                _delOuputHandler("Copying file: '" + __strFilePath + "' to '" + __strFilePath.Replace(_strSourcePath, _strDestPath) + "'");
+                File.Copy(__strFilePath, __strFilePath.Replace(_strSourcePath, _strDestPath));
+            }
+
+            _delOuputHandler("Done...");
+        }
         public static string strGetMysqlDateTime()
         {
             DateTime _objDateTime = DateTime.Now;
